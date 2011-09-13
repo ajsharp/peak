@@ -4,7 +4,7 @@ module Peak
 
       filename = File.join(Peak.collectd_dir, "#{Peak.current_host.name}/#{filename}.rrd")
 
-      raise("RRD File #{filename} cannot be found.") unless File.exists?(filename)
+      Peak.logger.error("RRD File #{filename} cannot be found.") unless File.exists?(filename)
 
       rrd = RRD::Base.new(filename)
       stats = rrd.fetch(:average, :start => start_at, :end => Time.now)
