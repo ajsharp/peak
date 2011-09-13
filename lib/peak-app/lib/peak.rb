@@ -25,5 +25,9 @@ module Peak
     def load_config
       Config.load_config
     end
+
+    def logger
+      @logger ||= ::Logger.new($stdout).tap { |l| l.formatter = Logger::Formatter.new }
+    end
   end
 end
